@@ -1,1 +1,81 @@
- <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="theme-color" content="#D50000" /><meta name="msapplication-navbutton-color" content="#D50000" /><meta name="apple-mobile-web-app-status-bar-style" content="#D50000" /><title>Gourgopal.Github.Io</title><base href="https://gourgopal.github.io/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><link href="styles.d41d8cd98f00b204e980.bundle.css" rel="stylesheet"/></head><body><app-root></app-root><script type="text/javascript" src="inline.f67a3907f1643615f6a2.bundle.js"></script><script type="text/javascript" src="polyfills.ad37cd45a71cb38eee76.bundle.js"></script><script type="text/javascript" src="main.4c2f452c6e6e11fac0af.bundle.js"></script></body></html>
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gour Gopal</title>
+  <base href="/">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+</head>
+<body ng-app="WebApp" ng-cloak>
+    <ng-view></ng-view>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+  
+  <script type="text/javascript">
+    var app = angular.module('WebApp', ['ngMaterial', 'ngMessages', 'ngRoute']);
+    app.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
+      function($routeProvider, $locationProvider, $mdThemingProvider) {
+        $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('');
+        $routeProvider
+          .when('/', {
+            templateUrl: 'Home.html',
+            controller: 'HomeController',
+            controllerAs: 'Home'
+          })
+          .when('/Home', { redirectTo: '/Welcome' })
+          .when('/Welcome', {
+            templateUrl: 'Welcome.html',
+            controller: 'WelcomeController',
+            controllerAs: 'Welcome'
+          })
+          .otherwise({ redirectTo: '/Welcome' });
+
+          $mdThemingProvider.theme('default')
+            .primaryPalette('blue-grey')
+            .accentPalette('red');
+
+          // Mobile browsers status bar color
+          $mdThemingProvider.enableBrowserColor({
+              theme: 'defualt',
+              palette: 'blue-grey',      // <-- Note this, you have to use a predefined palette name
+              hue: '200'
+          });
+      }]);
+      app.run(function($rootScope, $mdDialog){
+        $rootScope.showAlert = function(ev) {
+          // Appending dialog to document.body to cover sidenav in docs app
+          // Modal dialogs should fully cover application
+          // to prevent interaction outside of dialog
+          $mdDialog.show(
+            $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#popupContainer')))
+              .clickOutsideToClose(true)
+              .title(ev.title)
+              .textContent(ev.content)
+              .ariaLabel('Alert Dialog')
+              .ok('Got it!')
+              .targetEvent(ev)
+          );
+        };
+      });
+  </script>
+  <script type="text/javascript">
+    app.controller('HomeController', function($scope, $rootScope) {
+      $rootScope.showAlert({title: "Welcome!", content: "This site will be live soon"});
+    });
+  </script>
+  <script type="text/javascript">
+    app.controller('WelcomeController', function($scope, $rootScope) {
+      $rootScope.showAlert({title: "Welcome!", content: "This site is under construction and will be live soon"});
+    });
+  </script>
+</body>
+</html>
