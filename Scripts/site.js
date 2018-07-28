@@ -17,8 +17,8 @@ app.config(['$routeProvider', '$mdThemingProvider', '$locationProvider',
         $locationProvider.hashPrefix('');
         // Mobile browsers status bar color
         $mdThemingProvider.enableBrowserColor({
-            theme: 'default',
-            palette: 'accent',      // <-- Note this, you have to use a predefined palette name
+            theme: 'purple',
+            palette: 'A400',      // <-- Note this, you have to use a predefined palette name
             hue: '200'
         });
     }]);
