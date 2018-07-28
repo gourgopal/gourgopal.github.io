@@ -1,1 +1,61 @@
-<p class="md-display-2">GourGopal's GitHub Homepage</p>
+<md-card md-whiteframe="{{height}}" ng-init="height = 5" ng-mouseenter="height = 10" ng-mouseleave="height = 5">
+    <md-card-title>
+        <md-card-title-media>
+            <div class="md-media-sm card-media" layout style="color:crimson">
+                <md-icon style="font-size: 36px;">contacts</md-icon>
+            </div>
+        </md-card-title-media>
+        <md-card-title-text>
+            <span class="md-headline">
+                <md-icon>person</md-icon>
+                Gour Gopal
+            </span>
+            <span class="md-subhead description">
+                <md-icon>work_outline</md-icon>
+                &nbsp;Developer, Designer
+            </span>
+            <span class="md-subhead description">
+                <md-icon>my_location</md-icon>
+                &nbsp;India
+            </span>
+        </md-card-title-text>
+    </md-card-title>
+</md-card>
+<div layout="row" flex>
+    <md-card flex md-whiteframe="{{height}}" ng-init="height = 5" ng-mouseenter="height = 10" ng-mouseleave="height = 5">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">
+                    <md-icon>thumb_up</md-icon>
+                    Interests
+                </span>
+                <span class="md-subhead description">
+                    <md-icon>map</md-icon>
+                    &nbsp;Travelling
+                </span>
+                <span class="md-subhead description">
+                    <md-icon>photo_camera</md-icon>
+                    &nbsp;Photography
+                </span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+    <md-card flex md-whiteframe="{{height}}" ng-init="height = 5" ng-mouseenter="height = 10" ng-mouseleave="height = 5">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">
+                    <md-icon>list_alt</md-icon>
+                    To do
+                </span>
+                <span class="md-subhead description">
+                    <md-icon>directions_car</md-icon>
+                    &nbsp;Buy a car
+                </span>
+                <span class="md-subhead description">
+                    <md-icon>build</md-icon>
+                    &nbsp;Make this awesome
+                </span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+</div>
