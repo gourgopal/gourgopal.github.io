@@ -16,11 +16,11 @@ app.config(['$routeProvider', '$mdThemingProvider', '$locationProvider',
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix('');
         // Mobile browsers status bar color
-        $mdThemingProvider.enableBrowserColor({
-            theme: 'purple',
-            palette: 'A400',      // <-- Note this, you have to use a predefined palette name
-            hue: '200'
-        });
+        // $mdThemingProvider.enableBrowserColor({
+        //     theme: 'default',
+        //     palette: 'accent',      // <-- Note this, you have to use a predefined palette name
+        //     hue: '200'
+        // });
     }]);
 app.run(function ($rootScope, $mdDialog) {
     $rootScope.showAlert = function (ev) {
