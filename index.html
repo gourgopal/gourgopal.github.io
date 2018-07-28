@@ -1,14 +1,17 @@
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gour Gopal</title>
   <base href="/">
-  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link rel="stylesheet" href="Content/site.css">
 </head>
+
 <body ng-app="WebApp" ng-cloak>
-    <ng-view></ng-view>
+  <ng-view></ng-view>
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
@@ -18,65 +21,90 @@
 
   <!-- Angular Material Library -->
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-  
+
   <script type="text/javascript">
     var app = angular.module('WebApp', ['ngMaterial', 'ngMessages', 'ngRoute']);
     app.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
-      function($routeProvider, $locationProvider, $mdThemingProvider) {
-        $locationProvider.html5Mode(true);
-        $locationProvider.hashPrefix('');
+      function ($routeProvider, $locationProvider, $mdThemingProvider) {
         $routeProvider
           .when('/', {
-            templateUrl: 'Home.html',
+            templateUrl: '/Home.html',
             controller: 'HomeController',
             controllerAs: 'Home'
           })
-          .when('/Home', { redirectTo: '/Welcome' })
-          .when('/Welcome', {
-            templateUrl: 'Welcome.html',
+          .when('Welcome', {
+            templateUrl: '/Welcome.html',
             controller: 'WelcomeController',
-            controllerAs: 'Welcome'
+            controllerAs: 'Welc'
           })
+          .when('Home', { redirectTo: '/' })
           .otherwise({ redirectTo: '/Welcome' });
+        $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('');
 
-          $mdThemingProvider.theme('default')
-            .primaryPalette('blue-grey')
-            .accentPalette('red');
+        $mdThemingProvider.definePalette('CustomMagenta', {
+          '50': '3461FF',
+          '100': '3B5EFF',
+          '200': '4E56FF',
+          '300': '6A4AFF',
+          '400': 'ef5350',
+          '500': 'f44336',
+          '600': 'e53935',
+          '700': 'd32f2f',
+          '800': 'c62828',
+          '900': 'b71c1c',
+          'A100': 'ff8a80',
+          'A200': 'ff5252',
+          'A400': 'ff1744',
+          'A700': 'd50000',
+          'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+          // on this palette should be dark or light
 
-          // Mobile browsers status bar color
-          $mdThemingProvider.enableBrowserColor({
-              theme: 'defualt',
-              palette: 'blue-grey',      // <-- Note this, you have to use a predefined palette name
-              hue: '200'
-          });
+          'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+            '200', '300', '400', 'A100'],
+          'contrastLightColors': ['50', '100', //hues which contrast should be 'dark' by default
+            '200', '300', '400', 'A100']    // could also specify this if default was 'dark'
+        });
+
+        $mdThemingProvider.theme('default')
+          .primaryPalette('CustomMagenta')
+          .accentPalette('red');
+
+        // Mobile browsers status bar color
+        $mdThemingProvider.enableBrowserColor({
+          theme: 'defualt',
+          palette: 'CustomMagenta',      // <-- Note this, you have to use a predefined palette name
+          hue: '200'
+        });
       }]);
-      app.run(function($rootScope, $mdDialog){
-        $rootScope.showAlert = function(ev) {
-          // Appending dialog to document.body to cover sidenav in docs app
-          // Modal dialogs should fully cover application
-          // to prevent interaction outside of dialog
-          $mdDialog.show(
-            $mdDialog.alert()
-              .parent(angular.element(document.querySelector('#popupContainer')))
-              .clickOutsideToClose(true)
-              .title(ev.title)
-              .textContent(ev.content)
-              .ariaLabel('Alert Dialog')
-              .ok('Got it!')
-              .targetEvent(ev)
-          );
-        };
-      });
-  </script>
-  <script type="text/javascript">
-    app.controller('HomeController', function($scope, $rootScope) {
-      $rootScope.showAlert({title: "Welcome!", content: "This site will be live soon"});
+    app.run(function ($rootScope, $mdDialog) {
+      $rootScope.showAlert = function (ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        // Modal dialogs should fully cover application
+        // to prevent interaction outside of dialog
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title(ev.title)
+            .textContent(ev.content)
+            .ariaLabel('Alert Dialog')
+            .ok('Got it!')
+            .targetEvent(ev)
+        );
+      };
     });
   </script>
   <script type="text/javascript">
-    app.controller('WelcomeController', function($scope, $rootScope) {
-      $rootScope.showAlert({title: "Welcome!", content: "This site is under construction and will be live soon"});
+    app.controller('HomeController', function ($scope, $rootScope) {
+      $rootScope.showAlert({ title: "Welcome!", content: "This site will be live soon" });
+    });
+  </script>
+  <script type="text/javascript">
+    app.controller('WelcomeController', function ($scope, $rootScope, ) {
+      $rootScope.showAlert({ title: "Welcome!", content: "This site is under construction and will be live soon" });
     });
   </script>
 </body>
+
 </html>
