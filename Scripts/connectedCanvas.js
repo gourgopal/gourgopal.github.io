@@ -1,114 +1,329 @@
-function setup() {
-	createCanvas(innerWidth, innerHeight)
-	window.addEventListener('resize', function() {
-		resizeCanvas(innerWidth, innerHeight)
-	})
+var APP = {
 
-	var bubbleAmount = (innerWidth + innerHeight) * 0.02
+	Player: function () {
 
-	for (var i = 0; i < bubbleAmount; i++) {
-		bubbles.push(new bubble(random(width), random(height), random(10, 25)))
-	}
-}
+		var scope = this;
 
-var bubbles = [],
-	connectDistance = 100,
-	materialColors = [
-		'#F44336',
-		'#E91E63',
-		'#9C27B0',
-		'#673AB7',
-		'#3F51B5',
-		'#2196F3',
-		'#03A9F4',
-		'#00BCD4',
-		'#009688',
-		'#4CAF50',
-		'#8BC34A',
-		'#CDDC39',
-		'#FFEB3B',
-		'#FFC107',
-		'#FF9800',
-		'#FF5722',
-		'#795548',
-		'#9E9E9E',
-		'#607D8B'
-	],
-	bgcolor = '#112552'
+		var loader = new THREE.ObjectLoader();
+		var camera, scene, renderer;
 
-function draw() {
-	background(bgcolor)
-	lines()
-	noStroke()
-	bubbles.forEach(x => {
-		x.update()
-		x.show()
-	})
-}
+		var controls, effect, cameraVR, isVR;
 
-function bubble(x, y, radius) {
-	this.x = x
-	this.y = y
-	this.radius = radius
-	this.xspeed = random(-0.5, 0.5)
-	this.yspeed = random(-0.5, 0.5)
-	this.color = random(materialColors)
+		var events = {};
 
-	this.update = () => {
-		this.x = this.x + this.xspeed
-		this.y = this.y + this.yspeed
-		if (this.x < 0 || this.x > width) {
-			this.xspeed = this.xspeed * -1
-		}
-		if (this.y < 0 || this.y > height) {
-			this.yspeed = this.yspeed * -1
-		}
-		if (this.x < 0) {
-			this.x = 0
-		}
-		if (this.x > width) {
-			this.x = width
-		}
-		if (this.y < 0) {
-			this.y = 0
-		}
-		if (this.y > height) {
-			this.y = height
-		}
-	}
+		this.dom = document.createElement('div');
 
-	this.show = () => {
-		fill(this.color)
-		ellipse(this.x, this.y, this.radius)
-	}
-}
+		this.width = 500;
+		this.height = 500;
 
-function lines() {
-	stroke(color(255, 255, 255, 20))
+		this.load = function (json) {
 
-	bubbles.map(elem => {
-		bubbles.map(innerElem => {
-			var distance = dist(elem.x, elem.y, innerElem.x, innerElem.y)
-			strokeWeight(map(distance, 0, connectDistance, 5, 0))
-			if (distance < connectDistance) {
-				strokeWeight(map(distance, 0, connectDistance, 3, 0))
-				line(elem.x, elem.y, innerElem.x, innerElem.y)
+			isVR = json.project.vr;
+
+			renderer = new THREE.WebGLRenderer({ antialias: true });
+			renderer.setClearColor(0x000000);
+			renderer.setPixelRatio(window.devicePixelRatio);
+
+			if (json.project.gammaInput) renderer.gammaInput = true;
+			if (json.project.gammaOutput) renderer.gammaOutput = true;
+
+			if (json.project.shadows) {
+
+				renderer.shadowMap.enabled = true;
+				// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
 			}
-		})
-	})
-	bubbles.map(elem => {
-		var mouseDist = dist(mouseX, mouseY, elem.x, elem.y)
-		if (mouseDist < connectDistance * 2) {
-			stroke(
-				color(
-					255,
-					255,
-					255,
-					map(mouseDist, 0, connectDistance * 2, 255, 100)
-				)
-			)
-			strokeWeight(map(mouseDist, 0, connectDistance * 2, 3, 0))
-			line(mouseX, mouseY, elem.x, elem.y)
+
+			this.dom.appendChild(renderer.domElement);
+
+			this.setScene(loader.parse(json.scene));
+			this.setCamera(loader.parse(json.camera));
+
+			events = {
+				init: [],
+				start: [],
+				stop: [],
+				keydown: [],
+				keyup: [],
+				mousedown: [],
+				mouseup: [],
+				mousemove: [],
+				touchstart: [],
+				touchend: [],
+				touchmove: [],
+				update: []
+			};
+
+			var scriptWrapParams = 'player,renderer,scene,camera';
+			var scriptWrapResultObj = {};
+
+			for (var eventKey in events) {
+
+				scriptWrapParams += ',' + eventKey;
+				scriptWrapResultObj[eventKey] = eventKey;
+
+			}
+
+			var scriptWrapResult = JSON.stringify(scriptWrapResultObj).replace(/\"/g, '');
+
+			for (var uuid in json.scripts) {
+
+				var object = scene.getObjectByProperty('uuid', uuid, true);
+
+				if (object === undefined) {
+
+					console.warn('APP.Player: Script without object.', uuid);
+					continue;
+
+				}
+
+				var scripts = json.scripts[uuid];
+
+				for (var i = 0; i < scripts.length; i++) {
+
+					var script = scripts[i];
+
+					var functions = (new Function(scriptWrapParams, script.source + '\nreturn ' + scriptWrapResult + ';').bind(object))(this, renderer, scene, camera);
+
+					for (var name in functions) {
+
+						if (functions[name] === undefined) continue;
+
+						if (events[name] === undefined) {
+
+							console.warn('APP.Player: Event type not supported (', name, ')');
+							continue;
+
+						}
+
+						events[name].push(functions[name].bind(object));
+
+					}
+
+				}
+
+			}
+
+			dispatch(events.init, arguments);
+
+		};
+
+		this.setCamera = function (value) {
+
+			camera = value;
+			camera.aspect = this.width / this.height;
+			camera.updateProjectionMatrix();
+
+			if (isVR === true) {
+
+				cameraVR = new THREE.PerspectiveCamera();
+				cameraVR.projectionMatrix = camera.projectionMatrix;
+				camera.add(cameraVR);
+
+				controls = new THREE.VRControls(cameraVR);
+				effect = new THREE.VREffect(renderer);
+
+				if (WEBVR.isAvailable() === true) {
+
+					this.dom.appendChild(WEBVR.getButton(effect));
+
+				}
+
+				if (WEBVR.isLatestAvailable() === false) {
+
+					this.dom.appendChild(WEBVR.getMessage());
+
+				}
+
+			}
+
+		};
+
+		this.setScene = function (value) {
+
+			scene = value;
+
+		};
+
+		this.setSize = function (width, height) {
+
+			this.width = width;
+			this.height = height;
+
+			if (camera) {
+
+				camera.aspect = this.width / this.height;
+				camera.updateProjectionMatrix();
+
+			}
+
+			if (renderer) {
+
+				renderer.setSize(width, height);
+
+			}
+
+		};
+
+		function dispatch(array, event) {
+
+			for (var i = 0, l = array.length; i < l; i++) {
+
+				array[i](event);
+
+			}
+
 		}
-	})
-}
+
+		var prevTime, request;
+
+		function animate(time) {
+
+			request = requestAnimationFrame(animate);
+
+			try {
+
+				dispatch(events.update, { time: time, delta: time - prevTime });
+
+			} catch (e) {
+
+				console.error((e.message || e), (e.stack || ""));
+
+			}
+
+			if (isVR === true) {
+
+				camera.updateMatrixWorld();
+
+				controls.update();
+				effect.render(scene, cameraVR);
+
+			} else {
+
+				renderer.render(scene, camera);
+
+			}
+
+			prevTime = time;
+
+		}
+
+		this.play = function () {
+
+			document.addEventListener('keydown', onDocumentKeyDown);
+			document.addEventListener('keyup', onDocumentKeyUp);
+			document.addEventListener('mousedown', onDocumentMouseDown);
+			document.addEventListener('mouseup', onDocumentMouseUp);
+			document.addEventListener('mousemove', onDocumentMouseMove);
+			document.addEventListener('touchstart', onDocumentTouchStart);
+			document.addEventListener('touchend', onDocumentTouchEnd);
+			document.addEventListener('touchmove', onDocumentTouchMove);
+
+			dispatch(events.start, arguments);
+
+			request = requestAnimationFrame(animate);
+			prevTime = performance.now();
+
+		};
+
+		this.stop = function () {
+
+			document.removeEventListener('keydown', onDocumentKeyDown);
+			document.removeEventListener('keyup', onDocumentKeyUp);
+			document.removeEventListener('mousedown', onDocumentMouseDown);
+			document.removeEventListener('mouseup', onDocumentMouseUp);
+			document.removeEventListener('mousemove', onDocumentMouseMove);
+			document.removeEventListener('touchstart', onDocumentTouchStart);
+			document.removeEventListener('touchend', onDocumentTouchEnd);
+			document.removeEventListener('touchmove', onDocumentTouchMove);
+
+			dispatch(events.stop, arguments);
+
+			cancelAnimationFrame(request);
+
+		};
+
+		this.dispose = function () {
+
+			while (this.dom.children.length) {
+
+				this.dom.removeChild(this.dom.firstChild);
+
+			}
+
+			renderer.dispose();
+
+			camera = undefined;
+			scene = undefined;
+			renderer = undefined;
+
+		};
+
+		//
+
+		function onDocumentKeyDown(event) {
+
+			dispatch(events.keydown, event);
+
+		}
+
+		function onDocumentKeyUp(event) {
+
+			dispatch(events.keyup, event);
+
+		}
+
+		function onDocumentMouseDown(event) {
+
+			dispatch(events.mousedown, event);
+
+		}
+
+		function onDocumentMouseUp(event) {
+
+			dispatch(events.mouseup, event);
+
+		}
+
+		function onDocumentMouseMove(event) {
+
+			dispatch(events.mousemove, event);
+
+		}
+
+		function onDocumentTouchStart(event) {
+
+			dispatch(events.touchstart, event);
+
+		}
+
+		function onDocumentTouchEnd(event) {
+
+			dispatch(events.touchend, event);
+
+		}
+
+		function onDocumentTouchMove(event) {
+
+			dispatch(events.touchmove, event);
+
+		}
+
+	}
+
+};
+
+var loader = new THREE.FileLoader();
+loader.load('./Scripts/app.json', function (text) {
+
+	var player = new APP.Player();
+	player.load(JSON.parse(text));
+	player.setSize(window.innerWidth, window.innerHeight);
+	player.play();
+
+	document.body.appendChild(player.dom);
+
+	window.addEventListener('resize', function () {
+		player.setSize(window.innerWidth, window.innerHeight);
+	});
+});
