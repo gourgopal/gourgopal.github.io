@@ -1,4 +1,4 @@
-body {
+ff {
 	/* width: 100wh;
 	height: 90vh; */
 	/* color: #fff; */
@@ -62,3 +62,12 @@ md-card {
 md-button {
 	color: white;
 }
+canvas {
+	width: 100vw;
+	height: 100vh;
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -9999;
+  }

@@ -2,7 +2,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
-  <base href="@Url.Content(" ~/ ")" />
+  <base href="/" />
   <title>Gour Gopal</title>
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
   <meta name="theme-color" content="#bf00ff" />
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body ng-app="WebApp" ng-cloak>
+<body ng-app="WebApp" ng-cloak style="background: transparent">
   <md-nav-bar nav-bar-aria-label="navigation links">
     <md-nav-item md-nav-href="#/Home" name="page1">
       What's this?
@@ -33,8 +33,9 @@
 
   <!-- Angular Material Library -->
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
   <script src="./Scripts/site.js"></script>
+  <script src="./Scripts/connectedCanvas.js"></script>
   <script type="text/javascript">
     app.controller('HomeController', function ($scope, $rootScope) {
       $rootScope.showAlert({ title: "Welcome!", content: "This site will be live soon" });
