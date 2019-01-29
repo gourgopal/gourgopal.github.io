@@ -1,52 +1,25 @@
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
-  <base href="/" />
-  <title>Gour Gopal</title>
-  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-  <meta name="theme-color" content="#bf00ff" />
-  <meta name="msapplication-navbutton-color" content="#bf00ff" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#bf00ff" />
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
-  <link rel="stylesheet" href="Content/site.css">
+  <meta charset="utf-8">
+  <title>Numerology</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='msapplication-TileImage' content='/assets/icons/icon-144x144.png'>
+  <meta name='msapplication-TileColor' content='#ffbb00'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body ng-app="WebApp" ng-cloak style="background: transparent">
-  <md-nav-bar nav-bar-aria-label="navigation links">
-    <md-nav-item md-nav-href="#/Home" name="page1">
-      What's this?
-    </md-nav-item>
-    <md-nav-item md-nav-href="#/Welcome" name="page2">
-      About Me
-    </md-nav-item>
-  </md-nav-bar>
-  <div id="world"></div>
-  <ng-view></ng-view>
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.min.js"></script>
-
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-  <script src="./Scripts/three.min.js"></script>
-  <script src="./Scripts/site.js"></script>
-  <script src="./Scripts/connectedCanvas.js"></script>
-  <script type="text/javascript">
-    app.controller('HomeController', function ($scope, $rootScope) {
-      $rootScope.showAlert({ title: "Welcome!", content: "This site will be live soon" });
-    });
-  </script>
-  <script type="text/javascript">
-    app.controller('WelcomeController', function ($scope, $rootScope, ) {
-      $rootScope.showAlert({ title: "Welcome!", content: "This site is under construction and will be live soon" });
-    });
-  </script>
-</body>
-
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+<link rel="stylesheet" href="styles.fc3d5147e696c747ba3f.css"></head>
+<body>
+  <app-root></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script type="text/javascript" src="runtime.ec2944dd8b20ec099bf3.js"></script><script type="text/javascript" src="polyfills.1ef83d22ada557f4a131.js"></script><script type="text/javascript" src="main.1f2cc302f5d9703e094b.js"></script></body>
 </html>
