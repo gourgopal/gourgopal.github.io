@@ -7,12 +7,13 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
+        "/es2015-polyfills.12eccedba99646c7daca.js",
         "/favicon.ico",
         "/index.html",
-        "/main.1f2cc302f5d9703e094b.js",
-        "/polyfills.1ef83d22ada557f4a131.js",
-        "/runtime.ec2944dd8b20ec099bf3.js",
-        "/styles.fc3d5147e696c747ba3f.css"
+        "/main.ab11c08d24e09f1047ca.js",
+        "/polyfills.407a467dedb63cfdd103.js",
+        "/runtime.a5dd35324ddfd942bef1.js",
+        "/styles.0eff68c293b09b19c191.css"
       ],
       "patterns": []
     },
@@ -28,7 +29,9 @@
         "/assets/icons/icon-384x384.png",
         "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
-        "/assets/icons/icon-96x96.png"
+        "/assets/icons/icon-96x96.png",
+        "/assets/img/logo.png",
+        "/assets/img/logo_large.png"
       ],
       "patterns": []
     }
@@ -43,12 +46,15 @@
     "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/img/logo.png": "c7e438aef0902eaa7db4d7b823ae1293b300d981",
+    "/assets/img/logo_large.png": "0e32961df67231c472d83b646c16d1f7185a2899",
+    "/es2015-polyfills.12eccedba99646c7daca.js": "e546b81560cf13f04d7e6a3944e5e3087f131356",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "0cca7a1d6ad3de681d831a5b1b7c03f59c21f42b",
-    "/main.1f2cc302f5d9703e094b.js": "6d389853ef692c69ebfb8c8aed13a34cb6bbb415",
-    "/polyfills.1ef83d22ada557f4a131.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
-    "/runtime.ec2944dd8b20ec099bf3.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
-    "/styles.fc3d5147e696c747ba3f.css": "2690feb34934f6ddcf8d2f3f4b4abef732577425"
+    "/index.html": "fc8ab1190ab978fd903d24e5ed696e9180383575",
+    "/main.ab11c08d24e09f1047ca.js": "7b26c3f473399834a7ad3831ce3b2d4e606f4971",
+    "/polyfills.407a467dedb63cfdd103.js": "ffa449995bf2eba2ccd0a002417214f7eb75e7b5",
+    "/runtime.a5dd35324ddfd942bef1.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
+    "/styles.0eff68c293b09b19c191.css": "11113d820d57ddc5dffba0b885656173e95892e2"
   },
   "navigationUrls": [
     {
