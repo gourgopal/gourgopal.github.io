@@ -10,7 +10,7 @@
         "/es2015-polyfills.12eccedba99646c7daca.js",
         "/favicon.ico",
         "/index.html",
-        "/main.40bc1c94bd72353abb1c.js",
+        "/main.29f1b9bb19ad07e5255d.js",
         "/polyfills.407a467dedb63cfdd103.js",
         "/runtime.a5dd35324ddfd942bef1.js",
         "/styles.0eff68c293b09b19c191.css"
@@ -30,8 +30,13 @@
         "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
+        "/assets/img/f.png",
+        "/assets/img/g.png",
+        "/assets/img/l.png",
         "/assets/img/logo.png",
-        "/assets/img/logo_large.png"
+        "/assets/img/logo_large.png",
+        "/assets/img/t.png",
+        "/assets/img/w.png"
       ],
       "patterns": []
     }
@@ -46,12 +51,17 @@
     "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/img/f.png": "35bd8534005f93532bd44ef479481f2f068275d7",
+    "/assets/img/g.png": "a4be955734a7f83fb681aaa23deabe97fbad76a7",
+    "/assets/img/l.png": "88183ccadee6513ea96155fd672469dc77cabcd8",
     "/assets/img/logo.png": "c7e438aef0902eaa7db4d7b823ae1293b300d981",
     "/assets/img/logo_large.png": "0e32961df67231c472d83b646c16d1f7185a2899",
+    "/assets/img/t.png": "7b07bcf30fd7ac35a9bcf09cfd8135905df1b6b2",
+    "/assets/img/w.png": "58e6afaf99e72a83d8a821ac6f8b9b55d1fe7e0a",
     "/es2015-polyfills.12eccedba99646c7daca.js": "e546b81560cf13f04d7e6a3944e5e3087f131356",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "f09b841c7d0ed5f3e23e7a610d60283ea70c6c78",
-    "/main.40bc1c94bd72353abb1c.js": "c1f328fb36ce10762cc7e95c97b197ce5f8dbb37",
+    "/index.html": "ef1c1badc7d74bfec304a4f4785f4efb09e6cde1",
+    "/main.29f1b9bb19ad07e5255d.js": "0806b460c30c21b3caa2793161124834d9b76851",
     "/polyfills.407a467dedb63cfdd103.js": "ffa449995bf2eba2ccd0a002417214f7eb75e7b5",
     "/runtime.a5dd35324ddfd942bef1.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "/styles.0eff68c293b09b19c191.css": "11113d820d57ddc5dffba0b885656173e95892e2"
