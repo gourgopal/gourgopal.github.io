@@ -184,77 +184,145 @@
     }
   </style>
   
-  <style>
-* {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
 
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+<style>
+.carousel-wrapper {
+  width: 763px;
+  height: 545px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 25px 0px rgba(46, 61, 73, 0.2);
+  border-radius: 20px;
+  margin: 10px auto 10px;
 }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+.carousel-container {
+  width: 700px;
+  height: 500px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+.carousel {
+  display: flex;
+  width: 4200px;
+  animation: sliding 18s infinite;
+}
+.carousel div {
+  width: 700px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+}
+.carousel:hover {
+  animation-play-state: paused;
+}
+.carousel .image-one {
+  background-image: url("https://gourgopal.github.io/images/team_2021_1.jpg");
+}
+.carousel .image-two {
+  background-image: url("https://gourgopal.github.io/images/team_2021_2.jpg");
+}
+.carousel .image-three {
+  background-image: url("https://gourgopal.github.io/images/team_lunch_2.jpg");
+}
+.carousel .image-four {
+  background-image: url("https://gourgopal.github.io/images/team_lunch_1.jpg");
+}
+.carousel .image-five {
+  background-image: url("https://gourgopal.github.io/images/Team_Fun.jpg");
+}
+.carousel .image-six {
+  background-image: url("https://gourgopal.github.io/images/First_Day.jpg");
 }
 
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+@keyframes sliding {
+  10% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-700px);
+  }
+  30% {
+    transform: translateX(-700px);
+  }
+  40% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-1400px);
+  }
+  60% {
+    transform: translateX(-2100px);
+  }
+  70% {
+    transform: translateX(-2800px);
+  }
+  80% {
+    transform: translateX(-3500px);
+  }
+  90% {
+    transform: translateX(-2800px);
+  }
+  98% {
+    transform: translateX(0);
+  }
 }
+@media screen and (max-width: 768px) {
+  .carousel-wrapper {
+    width: 763px;
+    height: 545px;
+  }
 
-.active {
-  background-color: #717171;
-}
+  .carousel-container {
+    width: 700px;
+    height: 500px;
+  }
 
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
+  .carousel {
+    width: 4200px;
+  }
+  .carousel > div {
+    width: 700px;
+    height: 500px;
+  }
 
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
+  @keyframes sliding {
+    10% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-700px);
+    }
+    30% {
+      transform: translateX(-700px);
+    }
+    40% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(-1400px);
+    }
+    60% {
+      transform: translateX(-2100px);
+    }
+    70% {
+      transform: translateX(-2800px);
+    }
+    80% {
+      transform: translateX(-3500px);
+    }
+    90% {
+      transform: translateX(-2800px);
+    }
+    98% {
+      transform: translateX(0);
+    }
+  }
 }
 </style>
+
   <!--[if mso]>
     <style type="text/css">
         .pc-fb-font {
@@ -382,54 +450,17 @@ img {vertical-align: middle;}
                                       </tr>
 									  <tr>
 									    <td>
-										<div class="slideshow-container">
-
-										<div class="mySlides fade">
-										  <div class="numbertext">Fri, April 17, 2020</div>
-										  <img src="https://gourgopal.github.io/images/team_2021_1.jpg" style="width:100%">
-										  <div class="text">Team Meetings</div>
-										</div>
-										
-										<div class="mySlides fade">
-										  <div class="numbertext">Fri, April 17, 2020</div>
-										  <img src="https://gourgopal.github.io/images/team_2021_2.jpg" style="width:100%">
-										  <div class="text">Team Meetings</div>
-										</div>
-
-										<div class="mySlides fade">
-										  <div class="numbertext">Wed, Dec 12, 2018</div>
-										  <img src="https://gourgopal.github.io/images/team_lunch_2.jpg" style="width:100%">
-										  <div class="text">Team Lunch Table 1</div>
-										</div>
-
-										<div class="mySlides fade">
-										  <div class="numbertext">Wed, Dec 12, 2018</div>
-										  <img src="https://gourgopal.github.io/images/team_lunch_1.jpg" style="width:100%">
-										  <div class="text">Team Lunch Table 2</div>
-										</div>
-										
-										<div class="mySlides fade">
-										  <div class="numbertext">Sun, May 6, 2018</div>
-										  <img src="https://gourgopal.github.io/images/Team_Fun.jpg" style="width:100%">
-										  <div class="text">Rishikesh</div>
-										</div>
-										
-										<div class="mySlides fade">
-										  <div class="numbertext">Thurs, June 1, 2017</div>
-										  <img src="https://gourgopal.github.io/images/First_Day.jpg" style="width:100%">
-										  <div class="text">My first Day at Milliman</div>
-										</div>
-										</div>
-										
-										<br>
-
-										<div style="text-align:center">
-										  <span class="dot"></span>
-										  <span class="dot"></span>
-										  <span class="dot"></span> 
-										  <span class="dot"></span> 
-										  <span class="dot"></span>
-										  <span class="dot"></span>
+										<div class="carousel-wrapper">
+										  <div class="carousel-container">
+											<div class="carousel">
+											  <div class="image-one"></div>
+											  <div class="image-two"></div>
+											  <div class="image-three"></div>
+											  <div class="image-four"></div>
+											  <div class="image-five"></div>
+											  <div class="image-six"></div>
+											</div>
+										  </div>
 										</div>
 									    </td>
 									</tr>
@@ -579,27 +610,5 @@ img {vertical-align: middle;}
   </table>
   <!-- Fix for Gmail on iOS -->
   <div class="pc-gmail-fix" style="white-space: nowrap; font: 15px courier; line-height: 0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
-
-  <script>
-	var slideIndex = 0;
-	showSlides();
-
-	function showSlides() {
-	  var i;
-	  var slides = document.getElementsByClassName("mySlides");
-	  var dots = document.getElementsByClassName("dot");
-	  for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";  
-	  }
-	  slideIndex++;
-	  if (slideIndex > slides.length) {slideIndex = 1}    
-	  for (i = 0; i < dots.length; i++) {
-		dots[i].className = dots[i].className.replace(" active", "");
-	  }
-	  slides[slideIndex-1].style.display = "block";  
-	  dots[slideIndex-1].className += " active";
-	  setTimeout(showSlides, 3000); // Change image every 3 seconds
-	}
-  </script>
 </body>
 </html>
