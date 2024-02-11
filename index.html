@@ -1,81 +1,161 @@
-<html lang="en" >
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gour Gopal</title>
-  <base href="/">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <meta name="description" content="Goura Gopal Dalai's portfolio website to showcase various projects.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <title>Goura Gopal Dalai</title>
 </head>
-<body ng-app="WebApp" ng-cloak>
-    <ng-view></ng-view>
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.min.js"></script>
 
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-  
-  <script type="text/javascript">
-    var app = angular.module('WebApp', ['ngMaterial', 'ngMessages', 'ngRoute']);
-    app.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
-      function($routeProvider, $locationProvider, $mdThemingProvider) {
-        $locationProvider.html5Mode(true);
-        $locationProvider.hashPrefix('');
-        $routeProvider
-          .when('/', {
-            templateUrl: 'Home.html',
-            controller: 'HomeController',
-            controllerAs: 'Home'
-          })
-          .when('/Home', { redirectTo: '/Welcome' })
-          .when('/Welcome', {
-            templateUrl: 'Welcome.html',
-            controller: 'WelcomeController',
-            controllerAs: 'Welcome'
-          })
-          .otherwise({ redirectTo: '/Welcome' });
+<body>
+  <header>
+    <nav>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="https://gourgopal.github.io/blog/">Blog</a>
+    </nav>
+  </header>
 
-          $mdThemingProvider.theme('default')
-            .primaryPalette('blue-grey')
-            .accentPalette('red');
+  <main>
+    <section class="about">
+      <h1>Goura Gopal Dalai</h1>
+      <p>
+        A full-stack developer from Odisha, India. Currently learning software
+        design and back-end stuff, especially C#, Azure, Angular, and RESTful API.
+      </p>
+      <p>
+        Feel free to visit my
+        <a href="https://github.com/gourgopal" target="_blank">GitHub</a>
+        profile to review some projects, and don't hesitate to contact me via
+        <a href="mailto:gpl.dalai2@gmail.com" target="_blank">email</a>.
+      </p>
+    </section>
 
-          // Mobile browsers status bar color
-          $mdThemingProvider.enableBrowserColor({
-              theme: 'defualt',
-              palette: 'blue-grey',      // <-- Note this, you have to use a predefined palette name
-              hue: '200'
-          });
-      }]);
-      app.run(function($rootScope, $mdDialog){
-        $rootScope.showAlert = function(ev) {
-          // Appending dialog to document.body to cover sidenav in docs app
-          // Modal dialogs should fully cover application
-          // to prevent interaction outside of dialog
-          $mdDialog.show(
-            $mdDialog.alert()
-              .parent(angular.element(document.querySelector('#popupContainer')))
-              .clickOutsideToClose(true)
-              .title(ev.title)
-              .textContent(ev.content)
-              .ariaLabel('Alert Dialog')
-              .ok('Got it!')
-              .targetEvent(ev)
-          );
-        };
-      });
-  </script>
-  <script type="text/javascript">
-    app.controller('HomeController', function($scope, $rootScope) {
-      $rootScope.showAlert({title: "Welcome!", content: "This site will be live soon"});
-    });
-  </script>
-  <script type="text/javascript">
-    app.controller('WelcomeController', function($scope, $rootScope) {
-      $rootScope.showAlert({title: "Welcome!", content: "This site is under construction and will be live soon"});
-    });
-  </script>
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <article class="skills">
+        <span>C#</span> <span>Azure</span> <span>Bash</span>
+        <span>AWS</span> <span>SQL</span> <span>Angular</span>
+        <span>Firebase</span> <span>Git</span> <span>Docker</span>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project-container">
+        <article>
+          <h3>Valocity Connect</h3>
+          <p>
+            This project involved creating an application using Angular, focusing on constructing valuation calculations
+            and generating dynamic forms. The application is designed to assist site engineers and valuers in
+            determining the value of properties. It utilizes angular material-UI for its design and functionality.
+          </p>
+
+          <div class="links">
+            <a href="https://www.valocityglobal.com/en-in/" target="_blank">
+              Associated with Valocity
+            </a>
+          </div>
+        </article>
+
+        <article>
+          <h3>Valocity Core</h3>
+          <p>
+            This project involved developing a microservice application using ASP.NET Core and Angular for the front-end
+            interface. The application was deployed on Azure, with user authentication capabilities. It incorporates
+            role-based
+            permissions for different users, allowing each to access specific features and functionalities.
+
+            The application includes a custom dashboard and report generation functionality. It leverages Azure DevOps
+            for
+            continuous integration and continuous deployment (CI/CD), ensuring seamless updates and improvements.
+            Notifications
+            are sent to users based on actions they perform within the application, enhancing user engagement and
+            interaction.
+
+            For auditing purposes, extensive logging has been implemented. This project is primarily used by banking
+            users,
+            highlighting its robustness and security measures.
+          </p>
+
+          <div class="links">
+            <a href="https://www.valocityglobal.com/en-in/" target="_blank">
+              Associated with Valocity
+            </a>
+          </div>
+        </article>
+
+        <article>
+          <h3>MedInsight</h3>
+          <p>
+            This project revolves around a US healthcare application that was developed using WPF, C#, ASP.NET, and.NET
+            Framework
+            4.7. The application was later migrated to.NET Core 3.1. The project utilized TeamCity for CI/CD, which was
+            later
+            shifted to Azure DevOps. SQL Server was used for database management, along with Powershell for scripting.
+            Other
+            technologies used included Azure Batch, JSON, JavaScript, Python, Git, and SVN for version control.
+
+            The application consists of several subprojects, such as BatchService, Waste Calculator, Guideline
+            Analytics, HCG,
+            Hayes Grouper, Evidence-Based Measure (EBM), and CCHG. Each of these subprojects was thoroughly integrated
+            and tested
+            to ensure seamless operation.
+          </p>
+
+          <div class="links">
+            <a href="https://medinsight.com/" target="_blank">Associated with Milliman</a>
+          </div>
+        </article>
+
+        <article>
+          <h3>
+            Data Activators</h3>
+          <p>
+            Web-based US healthcare analytics platform.
+          </p>
+
+          <div class="links">
+            <a href="https://dataactivators.com/" target="_blank">Website</a>
+          </div>
+        </article>
+
+        <article>
+          <h3>
+            GIET (Main Campus)</h3>
+          <p>
+            Windows project for GIET (Main Campus). Provides student details such as Attendance reports, results,
+            schedules, location of College on Map, Grade Calculator, Syllabus, contact details.
+          </p>
+
+          <div class="links">
+            <a href="https://www.microsoft.com/en-in/store/p/giet-main-campus/9nblggh51mns" target="_blank">View in
+              Microsoft Store</a>
+          </div>
+        </article>
+
+        <article>
+          <h3>Helper project for Gigs</h3>
+          <p>
+            Job Scheduler and Time tracking tools for Gigs.
+          </p>
+
+          <div class="links">
+            <a href="github.com/gourgopal" target="_blank">Docs (coming soon)</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Goura Gopal Dalai</p>
+  </footer>
 </body>
+
 </html>
